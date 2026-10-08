@@ -1,12 +1,8 @@
-# 🎥 Intelligent Video Anonymization
+# Intelligent Video Anonymization
 
 ### Selective Face Detection • Recognition • Privacy-Preserving Video Processing
 
-<p align="center">
-  <img src="assets/sample-output.png" width="90%" alt="Sample anonymized output">
-</p>
-
-<p align="center">
+<p align="left">
   <img src="https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python">
   <img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge&logo=opencv">
   <img src="https://img.shields.io/badge/MTCNN-Face%20Detection-green?style=for-the-badge">
@@ -14,13 +10,13 @@
   <img src="https://img.shields.io/badge/PyTorch-Deep%20Learning-ee4c2c?style=for-the-badge&logo=pytorch">
 </p>
 
-<p align="center">
+<p align="left">
   <b>Automatically detect, identify and anonymize a selected person in a multi-person video while preserving the rest of the scene.</b>
 </p>
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 **Intelligent Video Anonymization** is a computer-vision pipeline for targeted face anonymization.
 
@@ -37,102 +33,7 @@ The project presentation describes the core flow as **face detection → face re
 
 ---
 
-## 🎯 Problem Statement
-
-Traditional video anonymization can require manual editing or can anonymize every detected face.
-
-This project addresses a more targeted problem:
-
-> **How can we automatically anonymize only a specific individual in a multi-person video while keeping the rest of the scene intact?**
-
-The approach combines:
-
-- MTCNN for face detection
-- FaceNet embeddings for face recognition
-- Cosine similarity for identity matching
-- Configurable blur techniques for anonymization
-- OpenCV for video frame extraction and reconstruction
-- Quantitative metrics for evaluating anonymization and image quality
-
----
-
-## ✨ Key Features
-
-- 🎯 **Selective anonymization** — blur only the target individual.
-- 👤 **MTCNN face detection** — detect multiple faces in each frame.
-- 🧠 **FaceNet recognition** — compare identities using face embeddings.
-- 🎞️ **Frame-by-frame processing** — process and reconstruct videos with OpenCV.
-- 🌫️ **Multiple blur techniques**:
-  - Gaussian
-  - Mosaic / Pixelation
-  - Dot
-  - Triangle
-- 📊 **Quantitative evaluation**:
-  - PSNR
-  - SSIM
-  - MSE
-  - Laplacian Variance
-  - Tenengrad
-  - Brenner
-- ⚙️ **Configurable matching threshold and blur strength**.
-- 💻 **CPU/GPU device selection**.
-- 📁 **Modular project structure** suitable for experimentation and extension.
-
----
-
-## 🧩 System Architecture
-
-The architecture used in the project follows this processing flow:
-
-```text
-                    ┌──────────────────┐
-                    │   Input Video    │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │ Frame Extraction │
-                    │     OpenCV       │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │  Face Detection  │
-                    │      MTCNN       │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │ Face Recognition │
-                    │     FaceNet      │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │  Embedding       │
-                    │   Comparison     │
-                    └────────┬─────────┘
-                             │
-                       Target match?
-                       /           \
-                     Yes            No
-                      │              │
-                      ▼              ▼
-                ┌──────────┐   ┌──────────┐
-                │   Blur   │   │   Keep   │
-                │  Target  │   │   Face   │
-                └────┬─────┘   └────┬─────┘
-                     │              │
-                     └──────┬───────┘
-                            ▼
-                   ┌──────────────────┐
-                   │  Output Video    │
-                   └──────────────────┘
-```
-
-### Architecture Image
-
-Replace the file below with the architecture image from your presentation:
+## System Architecture
 
 <p align="center">
   <img src="assets/architecture.png" width="90%" alt="System architecture">
@@ -140,15 +41,11 @@ Replace the file below with the architecture image from your presentation:
 
 ---
 
-## 🔬 Methodology
+## Methodology
 
 ### 1. Reference Image
 
 A reference image containing the target person's face is supplied to the system.
-
-<p align="center">
-  <img src="assets/input-reference.png" width="70%" alt="Reference face">
-</p>
 
 ### 2. Face Detection
 
@@ -190,16 +87,16 @@ OpenCV writes the processed frames into a new output video.
 
 ---
 
-## 🎨 Blur Techniques
+## Blur Techniques
 
 The project supports four blur strategies:
 
-| Technique | Description |
-|---|---|
-| **Gaussian** | Smooth Gaussian filtering for strong face anonymization |
-| **Mosaic** | Pixelation through downsampling and nearest-neighbor reconstruction |
-| **Dot** | Custom circular/dot-shaped filtering kernel |
-| **Triangle** | Custom triangular weighted filtering kernel |
+  | Technique | Description |
+  |---|---|
+  | **Gaussian** | Smooth Gaussian filtering for strong face anonymization |
+  | **Mosaic** | Pixelation through downsampling and nearest-neighbor reconstruction |
+  | **Dot** | Custom circular/dot-shaped filtering kernel |
+  | **Triangle** | Custom triangular weighted filtering kernel |
 
 The project presentation specifically evaluates **Gaussian, Mosaic, Dot and Triangle** blur techniques.
 
@@ -255,7 +152,7 @@ These are sharpness/focus measures. Lower values indicate a more blurred image.
 
 ---
 
-## 🏆 Findings From the Project Evaluation
+## Findings From the Project Evaluation
 
 According to the project evaluation:
 
@@ -268,103 +165,9 @@ The overall project conclusion is:
 
 > **Gaussian Blur is the strongest choice for anonymization, while Mosaic Blur provides a useful balance between anonymization and visual-quality retention.**
 
-<p align="center">
-  <img src="assets/results.png" width="90%" alt="Project results">
-</p>
-
-> **Important:** Keep your exact experimental values in `results/metrics/`. Do not replace them with example numbers in the README.
-
 ---
 
-## 🎬 Sample Output
-
-The final output is a video in which only the selected target face is anonymized.
-
-<p align="center">
-  <img src="assets/sample-output.png" width="90%" alt="Sample anonymized frame">
-</p>
-
-If you have a short GIF demonstrating the complete pipeline, you can replace the image above with:
-
-```html
-<p align="center">
-  <img src="assets/demo.gif" width="90%" alt="Video anonymization demo">
-</p>
-```
-
----
-
-## 🛠️ Tech Stack
-
-| Component | Technology |
-|---|---|
-| Language | Python |
-| Video processing | OpenCV |
-| Face detection | MTCNN |
-| Face recognition | FaceNet / InceptionResnetV1 |
-| Deep learning | PyTorch |
-| Image processing | OpenCV, NumPy |
-| Image-quality evaluation | scikit-image |
-| Visualization | Matplotlib |
-
----
-
-## 📁 Project Structure
-
-```text
-intelligent-video-anonymization/
-│
-├── assets/
-│   ├── architecture.png
-│   ├── mtcnn.png
-│   ├── input-reference.png
-│   ├── sample-output.png
-│   ├── blur-comparison.png
-│   ├── evaluation.png
-│   ├── results.png
-│   └── demo.gif
-│
-├── data/
-│   ├── input/
-│   │   └── .gitkeep
-│   ├── reference/
-│   │   └── .gitkeep
-│   └── output/
-│       └── .gitkeep
-│
-├── docs/
-│   └── methodology.md
-│
-├── results/
-│   ├── metrics/
-│   │   └── .gitkeep
-│   └── plots/
-│       └── .gitkeep
-│
-├── scripts/
-│   ├── run_anonymisation.py
-│   ├── evaluate_video.py
-│   ├── compare_blurs.py
-│   └── plot_metrics.py
-│
-├── src/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── detector.py
-│   ├── recognizer.py
-│   ├── blur.py
-│   ├── video_io.py
-│   ├── pipeline.py
-│   └── metrics.py
-│
-├── .gitignore
-├── requirements.txt
-└── README.md
-```
-
----
-
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the repository
 
@@ -399,7 +202,7 @@ For a CUDA-enabled PyTorch installation, install the appropriate PyTorch build f
 
 ---
 
-## ▶️ Quick Start
+## Quick Start
 
 Place your files like this:
 
@@ -429,7 +232,7 @@ python scripts/run_anonymisation.py     --video data/input/input_video.mp4     -
 
 ---
 
-## 🎛️ Change the Blur Method
+## Change the Blur Method
 
 ### Gaussian
 
@@ -457,7 +260,7 @@ python scripts/run_anonymisation.py     --video data/input/input_video.mp4     -
 
 ---
 
-## 🎚️ Tune Face Matching
+## Tune Face Matching
 
 The default similarity threshold is `0.90`.
 
@@ -473,7 +276,7 @@ For a formal experiment, select the threshold using validation data rather than 
 
 ---
 
-## 📈 Evaluate the Processed Video
+## Evaluate the Processed Video
 
 After generating the anonymized video:
 
@@ -495,7 +298,7 @@ python scripts/evaluate_video.py     --original data/input/input_video.mp4     -
 
 ---
 
-## 🔬 Compare Blur Techniques
+## Compare Blur Techniques
 
 Prepare a representative image or face crop:
 
@@ -527,7 +330,7 @@ metrics.json
 
 ---
 
-## 📊 Generate Metric Plots
+## Generate Metric Plots
 
 Run:
 
@@ -541,146 +344,3 @@ Plots are generated under:
 results/blur_comparison/plots/
 ```
 
----
-
-## 🔐 Privacy and Responsible Use
-
-This project processes facial information and video containing potentially identifiable people.
-
-Use it responsibly:
-
-- Use videos and reference images for which you have permission.
-- Avoid committing real people's faces or private videos to GitHub.
-- Keep private media inside ignored `data/` directories.
-- Use synthetic, public-domain, or properly consented examples for demonstrations.
-- Treat anonymization as a privacy aid, not a guarantee of irreversible de-identification.
-
-The repository intentionally ignores:
-
-```text
-data/input/*
-data/reference/*
-data/output/*
-results/*
-```
-
-so private media and generated experiment files are not accidentally committed.
-
----
-
-## ⚠️ Limitations
-
-The current implementation is intended as an experimental computer-vision pipeline.
-
-Performance can be affected by:
-
-- Face pose and orientation
-- Occlusion
-- Lighting conditions
-- Motion blur
-- Small faces
-- Video resolution
-- Similar-looking individuals
-- Reference-image quality
-- Similarity-threshold selection
-- CPU/GPU processing capability
-
-The implementation should therefore be evaluated on representative validation data before being used in a real privacy-critical deployment.
-
----
-
-## 🔮 Future Improvements
-
-Possible extensions include:
-
-- Real-time webcam/video-stream processing
-- Multi-reference identity matching
-- More robust tracking between frames
-- Temporal consistency across video frames
-- Configurable face-recognition backbones
-- Adaptive similarity thresholds
-- More anonymization techniques
-- Side-by-side automated evaluation reports
-- GPU-optimized batch inference
-- Web interface for uploading videos and selecting anonymization settings
-- Automated experiment tracking
-
----
-
-## 🧪 Reproducibility
-
-For reproducible experiments, record:
-
-- Input video
-- Reference image characteristics
-- Recognition threshold
-- Blur method
-- Blur strength
-- Mosaic block size
-- Device used
-- Number of evaluated frames
-- PSNR
-- SSIM
-- MSE
-- Laplacian Variance
-- Tenengrad
-- Brenner
-
-Keep experiment outputs under:
-
-```text
-results/
-```
-
-and document important configurations alongside the generated metrics.
-
----
-
-## 📚 Project Documentation
-
-Additional methodology notes are available in:
-
-```text
-docs/methodology.md
-```
-
----
-
-## 👩‍💻 Author
-
-**Shireen Aliza Ali**
-
-B.Tech — Computer Science & Engineering  
-Specialization: Artificial Intelligence & Machine Learning
-
----
-
-## ⭐ Repository Positioning
-
-This project is designed to demonstrate a complete applied computer-vision workflow:
-
-```text
-Deep Learning
-     ↓
-Face Detection
-     ↓
-Face Recognition
-     ↓
-Identity Matching
-     ↓
-Selective Anonymization
-     ↓
-Video Processing
-     ↓
-Quantitative Evaluation
-```
-
-It combines **computer vision, deep learning, image processing, privacy-preserving AI, and quantitative evaluation** into one end-to-end project.
-
----
-
-## 📄 License
-
-Add the license that matches your intended use before publishing the repository.
-
-For an academic portfolio repository, a standard open-source license such as MIT can be considered if all included dependencies, datasets, images, and other assets permit the intended redistribution.
