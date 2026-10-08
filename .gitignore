@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.vscode/
+.idea/
+
+# Private media
+data/input/*
+data/reference/*
+data/output/*
+
+# Generated experiment artifacts
+results/*
+!results/.gitkeep
+!results/metrics/.gitkeep
+!results/plots/.gitkeep
+
+# Asset placeholders
+!assets/.gitkeep
+selective_anonymization_scripts.ipynb
